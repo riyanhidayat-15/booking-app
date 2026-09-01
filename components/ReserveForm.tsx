@@ -14,18 +14,13 @@ const ReserveForm = ({
   room: RoomDetailProps;
   disabledDate: DisabledDateProps[];
 }) => {
-  const initialStart = new Date();
-
-  const [startDate, setStartDate] = useState<Date>(initialStart);
+  const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
 
   const handleDateChange = (dates: [Date | null, Date | null]) => {
     const [start, end] = dates;
 
-    if (start) {
-      setStartDate(start);
-    }
-
+    setStartDate(start);
     setEndDate(end);
   };
 
@@ -34,38 +29,41 @@ const ReserveForm = ({
       null,
       room.id,
       room.price,
-      startDate,
-      endDate ?? startDate,
+      startDate ?? new Date(),
+      endDate ?? new Date(),
     ),
     null,
   );
 
-  const excludeDates = disabledDate.map((item) => {
-    return {
-      start: item.startDate,
-      end: item.endDate,
-    };
-  });
+  const excludeDates = disabledDate.map((item) => ({
+    start: item.startDate,
+    end: item.endDate,
+  }));
 
   return (
     <div>
       <form action={formAction}>
         <div className="mb-4">
-          <label htmlFor="" className="block text-sm font-medium text-gray-900">
+          <label
+            htmlFor="date"
+            className="block text-sm font-medium text-gray-900"
+          >
             Arrival - Departure
           </label>
 
           <DatePicker
-            selected={startDate}
+            id="date"
             startDate={startDate}
             endDate={endDate}
             minDate={new Date()}
-            selectsRange={true}
+            selectsRange
             onChange={handleDateChange}
             excludeDateIntervals={excludeDates}
             dateFormat="dd-MM-yyyy"
             wrapperClassName="w-full"
             className="py-2 px-4 rounded-md border border-gray-300 w-full"
+            placeholderText="Select arrival - departure"
+            shouldCloseOnSelect={false}
           />
 
           <div aria-live="polite" aria-atomic="true">
@@ -74,11 +72,15 @@ const ReserveForm = ({
         </div>
 
         <div className="mb-4">
-          <label htmlFor="" className="block text-sm font-medium text-gray-900">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-900"
+          >
             Your Name
           </label>
 
           <input
+            id="name"
             type="text"
             name="name"
             className="py-2 px-4 rounded-md border border-gray-300 w-full"
@@ -91,11 +93,15 @@ const ReserveForm = ({
         </div>
 
         <div className="mb-4">
-          <label htmlFor="" className="block text-sm font-medium text-gray-900">
+          <label
+            htmlFor="phone"
+            className="block text-sm font-medium text-gray-900"
+          >
             Phone Number
           </label>
 
           <input
+            id="phone"
             type="text"
             name="phone"
             className="py-2 px-4 rounded-md border border-gray-300 w-full"
