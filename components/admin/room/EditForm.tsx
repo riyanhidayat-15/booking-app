@@ -5,10 +5,10 @@ import Image from "next/image";
 import { useRef, useState, useTransition, useActionState } from "react";
 import { IoCloudUploadOutline, IoTrashOutline } from "react-icons/io5";
 import { BarLoader } from "react-spinners";
-import { Amenities } from "@/lib/generated/prisma";
 import { saveRoom, updateRoom } from "@/lib/action";
 import clsx from "clsx";
 import { RoomProps } from "@/types/room";
+import { Amenities } from "@prisma/client";
 
 const EditForm = ({
   amenities,

@@ -5,9 +5,9 @@ import Image from "next/image";
 import { useRef, useState, useTransition, useActionState } from "react";
 import { IoCloudUploadOutline, IoTrashOutline } from "react-icons/io5";
 import { BarLoader } from "react-spinners";
-import { Amenities } from "@/lib/generated/prisma";
 import { saveRoom } from "@/lib/action";
 import clsx from "clsx";
+import { Amenities } from "@prisma/client";
 
 const CreateForm = ({ amenities }: { amenities?: Amenities[] }) => {
   const inputFileRef = useRef<HTMLInputElement>(null);
