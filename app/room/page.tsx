@@ -8,14 +8,15 @@ export const metadata: Metadata = {
   title: "Rooms & rates",
   description: "Choose your best room today",
 };
+
 const RoomPage = () => {
   return (
-    <div>
+    <div className="bg-neutral-950 text-neutral-100 min-h-screen">
       <HeaderSection
         title="Rooms & rates"
-        subtitle=" Lorem ipsum dolor sit amet."
+        subtitle="Lorem ipsum dolor sit amet."
       />
-      <div className="mt-10 px-4">
+      <div className="max-w-7xl mx-auto py-16 md:py-24 px-6">
         <Suspense fallback={<RoomSkeleton />}>
           <Main />
         </Suspense>
