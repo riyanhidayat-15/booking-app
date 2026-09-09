@@ -6,61 +6,68 @@ import { IoPeopleOutline } from "react-icons/io5";
 
 const Card = ({ room }: { room: Room }) => {
   return (
-    <div className="group bg-neutral-900/40 backdrop-blur-md border border-white/10 overflow-hidden transition-all duration-500 hover:border-white/20 hover:shadow-2xl">
-      {/* Image Container with Elegant Aspect Ratio & Subtle Zoom on Hover */}
-      <div className="h-[280px] sm:h-[320px] w-full relative overflow-hidden bg-neutral-950">
+    <div className="group relative bg-neutral-900/40 backdrop-blur-md border border-white/10 overflow-hidden transition-all duration-700 hover:border-amber-200/40 hover:shadow-2xl">
+      {/* Tall Editorial Image Aspect Ratio */}
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-950">
         <Image
           src={room.image}
-          width={384}
-          height={256}
-          alt="room image"
-          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          alt={room.name}
+          className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105 opacity-85 group-hover:opacity-100"
         />
-        {/* Subtle Gradient Overlay for Cinematic Feel */}
-        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent opacity-60" />
-      </div>
 
-      {/* Content Container */}
-      <div className="p-6 sm:p-8 flex flex-col justify-between">
-        <div>
-          {/* Room Name - Editorial Serif Font */}
-          <h4 className="font-serif-luxury text-2xl sm:text-3xl font-normal text-white mb-2 tracking-wide leading-tight">
+        {/* Soft Dark Vignette Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-75" />
+
+        {/* Capacity Badge - Floating Top Right */}
+        <div className="absolute top-4 right-4 z-10 flex items-center space-x-1.5 bg-neutral-950/60 backdrop-blur-md border border-white/10 px-3 py-1.5 text-[10px] tracking-[0.2em] uppercase text-neutral-300 font-light">
+          <IoPeopleOutline className="text-amber-200/90 text-xs" />
+          <span>
+            {room.capacity} {room.capacity === 1 ? "Guest" : "Guests"}
+          </span>
+        </div>
+
+        {/* Bottom Floating Content Overlay */}
+        <div className="absolute bottom-0 inset-x-0 p-6 sm:p-8 z-10 flex flex-col justify-end">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-amber-200/90 font-light mb-1">
+            Private Sanctuary
+          </span>
+
+          <h3 className="font-serif-luxury text-2xl sm:text-3xl font-normal text-white mb-2 leading-snug tracking-wide">
             <Link
               href={`/room/${room.id}`}
-              className="hover:text-amber-200/90 transition-colors duration-300"
+              className="hover:text-amber-200 transition-colors duration-300"
             >
               {room.name}
             </Link>
-          </h4>
+          </h3>
 
-          {/* Pricing - Minimalist & Clear */}
-          <div className="mb-6 flex items-baseline gap-1.5">
-            <span className="text-xl sm:text-2xl font-light text-amber-100 tracking-tight">
-              {formatCurrency(room.price)}
-            </span>
-            <span className="text-xs uppercase tracking-[0.15em] text-neutral-400 font-light">
-              / Night
-            </span>
+          <div className="w-8 h-[1px] bg-amber-200/40 my-3 transition-all duration-500 group-hover:w-16" />
+
+          {/* Pricing & Subtle Link Button */}
+          <div className="flex items-end justify-between pt-2">
+            <div>
+              <span className="text-xs uppercase tracking-[0.15em] text-neutral-400 font-light block text-[10px] mb-0.5">
+                Starting from
+              </span>
+              <div className="flex items-baseline space-x-1">
+                <span className="font-serif-luxury text-xl sm:text-2xl text-amber-100 font-normal">
+                  {formatCurrency(room.price)}
+                </span>
+                <span className="text-[10px] uppercase tracking-widest text-neutral-400 font-light">
+                  / night
+                </span>
+              </div>
+            </div>
+
+            <Link
+              href={`/room/${room.id}`}
+              className="inline-flex items-center text-[10px] uppercase tracking-[0.2em] font-medium text-white hover:text-amber-200 transition-colors duration-300 pb-1 border-b border-white/30 hover:border-amber-200"
+            >
+              Explore Villa →
+            </Link>
           </div>
-        </div>
-
-        {/* Footer Details & Action - Mobile First Layout */}
-        <div className="pt-4 border-t border-white/10 flex flex-row items-center justify-between gap-4">
-          {/* Capacity Spec */}
-          <div className="flex items-center space-x-2 text-xs sm:text-sm text-neutral-300 font-light tracking-wider uppercase">
-            <IoPeopleOutline className="text-base text-amber-200/80" />
-            <span>
-              {room.capacity} {room.capacity === 1 ? "Person" : "People"}
-            </span>
-          </div>
-
-          {/* Minimalist Action Button */}
-          <Link
-            href={`/room/${room.id}`}
-            className="inline-flex items-center justify-center bg-white text-neutral-950 hover:bg-amber-100 px-5 py-2.5 sm:px-6 sm:py-3 text-xs tracking-[0.15em] uppercase font-medium transition-all duration-300 shadow-md active:scale-95 whitespace-nowrap"
-          >
-            Book Now
-          </Link>
         </div>
       </div>
     </div>
