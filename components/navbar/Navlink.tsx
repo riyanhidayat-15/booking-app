@@ -15,7 +15,6 @@ const Navlink = () => {
 
   return (
     <>
-      {/* User Profile & Desktop Sign Out */}
       {session?.user ? (
         <div className="flex items-center justify-end md:order-2 space-x-4">
           <div className="hidden md:flex items-center space-x-3 bg-white/5 border border-white/10 pl-1 pr-3 py-1 rounded-full backdrop-blur-md">
@@ -41,7 +40,6 @@ const Navlink = () => {
         </div>
       ) : null}
 
-      {/* Mobile Hamburger Button */}
       <button
         onClick={() => setOpen(!open)}
         className="inline-flex items-center p-2 justify-center text-neutral-200 hover:text-white md:hidden transition-colors"
@@ -49,7 +47,6 @@ const Navlink = () => {
         {!open ? <IoMenu className="size-7" /> : <IoClose className="size-7" />}
       </button>
 
-      {/* Links Container */}
       <div
         className={clsx(
           "w-full md:block md:w-auto transition-all duration-300",
@@ -60,7 +57,10 @@ const Navlink = () => {
           },
         )}
       >
-        <ul className="flex flex-col font-light text-[11px] tracking-[0.2em] uppercase p-2 md:p-0 mt-2 md:mt-0 space-y-4 md:space-y-0 md:flex-row md:items-center md:space-x-8 text-neutral-300">
+        <ul
+          onClick={() => setOpen(false)}
+          className="flex flex-col font-light text-[11px] tracking-[0.2em] uppercase p-2 md:p-0 mt-2 md:mt-0 space-y-4 md:space-y-0 md:flex-row md:items-center md:space-x-8 text-neutral-300"
+        >
           <li>
             <Link
               className={clsx(
