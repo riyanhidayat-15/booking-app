@@ -12,6 +12,9 @@ const heroImages = [
   "/images/hero.jpg",
 ];
 
+// Ganti sesuai fasilitas/kebijakan hotel yang benar
+const highlights = ["Free Cancellation", "Best Rate Guarantee", "24/7 Support"];
+
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -24,7 +27,7 @@ const Hero = () => {
 
   return (
     <div className="relative min-h-[100dvh] w-full text-white overflow-hidden bg-neutral-950 flex flex-col justify-between pt-24 pb-8 px-6 sm:px-12 max-w-[1500px] mx-auto">
-      {/* Background Slideshow with Ayana Slow-Zoom (Ken Burns) Effect */}
+      {/* Background slideshow */}
       <div className="absolute inset-0 z-0">
         {heroImages.map((src, index) => {
           const isActive = index === currentIndex;
@@ -53,80 +56,54 @@ const Hero = () => {
             </div>
           );
         })}
-        {/* Soft Linear Gradient Overlay - Jauh Lebih Bening */}
         <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-neutral-950/10 to-neutral-950/30 z-20 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/60 via-transparent to-transparent z-20 pointer-events-none" />
       </div>
 
-      {/* Main Content Layout */}
-      <div className="relative z-30 grid grid-cols-1 lg:grid-cols-12 gap-6 items-end my-auto">
-        {/* Left Column: Subtle Editorial Text */}
-        <div className="lg:col-span-7 flex flex-col justify-end text-left">
-          <span className="text-[11px] sm:text-xs tracking-[0.3em] uppercase text-amber-200/90 font-light mb-1">
-            Sanctuary of Comfort
-          </span>
-          <h1 className="font-serif-luxury text-5xl sm:text-6xl md:text-7xl italic font-normal leading-none tracking-tight text-white mb-3 drop-shadow-lg">
-            Hotels
-          </h1>
-          <h2 className="font-serif-luxury text-xl sm:text-3xl lg:text-4xl font-normal tracking-wider uppercase text-neutral-100 leading-tight mb-2">
-            Book Your Luxury Room.
-          </h2>
-          <p className="text-xs sm:text-sm text-neutral-300/80 font-light tracking-wide max-w-sm">
-            Get special offer just for you today
-          </p>
+      {/* Main content */}
+      <div className="relative z-30 my-auto max-w-2xl flex flex-col text-left">
+        <span className="text-[11px] sm:text-xs tracking-[0.3em] uppercase text-amber-200/90 font-light mb-2">
+          Sanctuary of Comfort
+        </span>
+        <h1 className="font-serif-luxury text-6xl sm:text-7xl md:text-8xl italic font-normal leading-none tracking-tight text-white mb-4 drop-shadow-lg">
+          Hotels
+        </h1>
+        <h2 className="font-serif-luxury text-xl sm:text-3xl lg:text-4xl font-normal tracking-wider uppercase text-neutral-100 leading-tight mb-3">
+          Book Your Luxury Room.
+        </h2>
+        <p className="text-xs sm:text-sm text-neutral-300/80 font-light tracking-wide max-w-sm">
+          Get special offer just for you today
+        </p>
+
+        <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <Link
+            href={"/room"}
+            className="group inline-flex items-center justify-center gap-3 bg-white hover:bg-amber-100 text-neutral-950 py-4 px-8 text-[11px] tracking-[0.2em] uppercase font-semibold transition-all duration-300 shadow-xl active:scale-95"
+          >
+            Book Now
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </Link>
+          <Link
+            href={"/contact"}
+            className="inline-flex items-center justify-center border border-white/30 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-amber-200/60 text-white py-4 px-8 text-[11px] tracking-[0.2em] uppercase font-light transition-all duration-300 active:scale-95"
+          >
+            Contact Us
+          </Link>
         </div>
 
-        {/* Right Column: Glassmorphic Quick Booking Card */}
-        <div className="lg:col-span-5 w-full max-w-sm lg:ml-auto">
-          <div className="bg-neutral-950/30 backdrop-blur-md border border-white/20 p-5 rounded-xl shadow-2xl space-y-4">
-            <div className="border-b border-white/10 pb-3">
-              <h3 className="font-serif-luxury text-lg font-normal text-white tracking-wide">
-                Quick Booking
-              </h3>
-            </div>
-
-            <div className="space-y-2.5 text-xs text-neutral-200">
-              <div className="flex items-center justify-between p-2.5 bg-neutral-950/30 border border-white/10 rounded-lg backdrop-blur-sm">
-                <span className="text-neutral-400 font-light text-[10px] uppercase tracking-wider">
-                  Check-in
-                </span>
-                <span className="font-light text-xs tracking-wide">
-                  Select Date
-                </span>
-              </div>
-              <div className="flex items-center justify-between p-2.5 bg-neutral-950/30 border border-white/10 rounded-lg backdrop-blur-sm">
-                <span className="text-neutral-400 font-light text-[10px] uppercase tracking-wider">
-                  Check-out
-                </span>
-                <span className="font-light text-xs tracking-wide">
-                  Select Date
-                </span>
-              </div>
-              <div className="flex items-center justify-between p-2.5 bg-neutral-950/30 border border-white/10 rounded-lg backdrop-blur-sm">
-                <span className="text-neutral-400 font-light text-[10px] uppercase tracking-wider">
-                  Guests
-                </span>
-                <span className="font-light text-xs tracking-wide">
-                  2 Adults
-                </span>
-              </div>
-            </div>
-
-            <div className="pt-1 space-y-2">
-              <Link
-                href={"/room"}
-                className="w-full inline-flex items-center justify-center bg-white hover:bg-amber-100 text-neutral-950 py-3 px-5 text-[11px] tracking-[0.2em] uppercase font-semibold transition-all duration-300 rounded-lg shadow-lg active:scale-95"
-              >
-                Book Now
-              </Link>
-              <Link
-                href={"/contact"}
-                className="w-full inline-flex items-center justify-center bg-transparent border border-white/20 text-white hover:bg-white/10 py-2.5 px-5 text-[11px] tracking-[0.2em] uppercase font-light transition-all duration-300 rounded-lg active:scale-95"
-              >
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        </div>
+        {/* Info singkat */}
+        <ul className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] tracking-[0.2em] uppercase text-neutral-400">
+          {highlights.map((item, i) => (
+            <li key={item} className="flex items-center gap-3">
+              {i > 0 && (
+                <span className="size-1 rounded-full bg-amber-200/60" />
+              )}
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
 
       {/* Bottom Footer Anchor & Indicator */}
@@ -144,10 +121,13 @@ const Hero = () => {
           ))}
         </div>
 
-        <div className="flex items-center gap-2 text-amber-200/80 cursor-pointer hover:text-white transition-colors">
+        <a
+          href="#rooms"
+          className="flex items-center gap-2 text-amber-200/80 hover:text-white transition-colors"
+        >
           <span>Scroll Down</span>
-          <span>↓</span>
-        </div>
+          <span className="animate-bounce">↓</span>
+        </a>
       </div>
     </div>
   );
